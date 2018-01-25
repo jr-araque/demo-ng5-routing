@@ -2,14 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {AuthGuard} from '../auth/auth.guard';
 
 const ADMIN_ROUTES: Routes = [
-  { path: 'login', component: LoginComponent },
   {
     path: 'admin',
     canActivate: [],
     children: [
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [ AuthGuard ] },
       { path: '**', redirectTo: 'login', pathMatch: 'full' },
     ]
   }
@@ -17,13 +20,19 @@ const ADMIN_ROUTES: Routes = [
 
 @NgModule({
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(
       ADMIN_ROUTES,
     ),
+    BrowserModule
   ],
   declarations: [
     LoginComponent,
     DashboardComponent,
+  ],
+  providers: [
+    AuthGuard,
   ],
   exports: []
 })

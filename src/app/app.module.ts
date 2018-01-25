@@ -2,30 +2,33 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // Main Components
 import { AppComponent } from './app.component';
-// Shared Components
-import { NavbarComponent } from './shared/navbar/navbar.component';
 // Sub Modules
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 // Components
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { SharedModule } from './shared/shared.module';
+import {AuthService} from './auth/auth.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    NavbarComponent,
-    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
     AdminModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [
     AppComponent,
   ]

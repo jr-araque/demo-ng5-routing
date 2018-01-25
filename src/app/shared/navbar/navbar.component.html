@@ -5,10 +5,16 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home</a></li>
       <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/about">About</a></li>
-      <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/login">Login</a></li>
-      <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/admin/dashboard">Dashboard - Restricted</a></li>
+      <li class="nav-item">
+        <a *ngIf="loggedIn" class="nav-link" routerLinkActive="active" routerLink="/admin/dashboard" >Dashboard - Restricted</a>
+      </li>
     </ul>
   </div>
+  <form class="form-inline">
+    <p style="color:white" *ngIf="loggedIn" class="nav-link">{{ username }}</p>
+    <button *ngIf="!loggedIn" class="btn btn-success my-2 my-sm-0" routerLinkActive="active" routerLink="/admin/login">Log In</button>
+    <button *ngIf="loggedIn" class="btn btn-danger my-2 my-sm-0" >Log Out</button>
+  </form>
 </nav>
