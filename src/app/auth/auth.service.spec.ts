@@ -10,10 +10,10 @@ describe('AuthService', function () {
   });
 
   it('should updated user status', function () {
+    authSvc.login('myCrazyUserName');
     authSvc.isLoggedIn().subscribe((status) => {
       expect(status).toBe(true);
     });
-    authSvc.login('myCrazyUserName');
   });
 
 });
