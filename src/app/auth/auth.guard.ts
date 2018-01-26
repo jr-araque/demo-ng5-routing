@@ -7,10 +7,7 @@ import {AuthService} from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authSvc: AuthService) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authSvc.isLoggedIn || false;
+  canActivate(): Observable<boolean> {
+    return this.authSvc.isLoggedIn();
   }
 }
