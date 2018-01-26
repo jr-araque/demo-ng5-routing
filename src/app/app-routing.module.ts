@@ -15,7 +15,7 @@ const MAIN_ROUTES: Routes = [
   imports: [
     RouterModule.forRoot(
       MAIN_ROUTES,
-      { enableTracing: true}
+      { enableTracing: false } // <--- Activate Only on Development
     ),
   ],
   exports: [
