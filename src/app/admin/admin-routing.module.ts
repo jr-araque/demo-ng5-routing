@@ -20,17 +20,13 @@ const ADMIN_ROUTES: Routes = [
 
 @NgModule({
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
+
     RouterModule.forChild(
       ADMIN_ROUTES,
     ),
     BrowserModule
   ],
-  declarations: [
-    LoginComponent,
-    DashboardComponent,
-  ],
+  declarations: [],
   providers: [
     AuthGuard,
   ],
